@@ -55,6 +55,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to=upload_image_path,blank=True, null=True)
     featured = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 
     objects = ProductManager()

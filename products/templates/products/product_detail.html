@@ -2,14 +2,21 @@
 
 {% block content %}
 
- <h1> Product detail </h1>
 
-    {{ object.title}} </br>
-    {{object.description}} </br>
-
-    {% if object.image %}
-    <img src='{{object.image.url}}' alt="">
-    {% endif %}
+ <div class="container">
+     <div class="row">
+         <div class="col">
+                <h1> {{ object.title}}</h1>
+                 </br>
+                {{object.description|linebreaks}} </br>
+            
+                {% if object.image %}
+                <img src='{{object.image.url}}' alt="" class="img-fluid">
+                {% endif %}
+         </div>
+     </div>
+ </div>
+   
 
 {% endblock content %}
 

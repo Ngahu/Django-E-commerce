@@ -7,7 +7,7 @@
   {% endif %}
   <div class="card-body">
     <h5 class="card-title">{{ instance.title }}</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text">{{ instance.description|truncatewords:11}}</p>
     <a href="{{ instance.get_absolute_url}}" class="btn btn-primary">View</a>
   </div>
 </div>
