@@ -9,6 +9,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('products.urls',namespace='products')),
+    url(r'search/',include('search.urls',namespace='search')),
 ]
 
 

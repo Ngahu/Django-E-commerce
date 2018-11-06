@@ -7,6 +7,7 @@
 
     {% for obj in object_list  %} 
     <div class="col">
+        {{ forloop.counter }}
         {% include 'products/snippets/card.html' with instance=obj %}
     </div>
     {% endfor %}

@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     # internal apps
     'products',
+    'search',
 ]
 
 MIDDLEWARE = [
