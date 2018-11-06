@@ -23,5 +23,5 @@ class SearchProductView(ListView):
         if query is not None:
             return Product.objects.filter(title__icontains=query)
         
-        return Product.objects.all()
-        # return Product.objects.featured()
+        # return Product.objects.all()
+        return Product.objects.featured()
