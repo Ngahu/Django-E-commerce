@@ -2,3 +2,5 @@
 
 *pyc
 /.vscode
+
+/static_cdn
