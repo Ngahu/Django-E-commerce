@@ -38,7 +38,7 @@ class ProductManager(models.Manager):
     def all(self):
         return self.get_queryset().active()
 
-    def features(self):
+    def featured(self):
         return self.get_queryset().featured()
 
     def get_by_id(self,id):
