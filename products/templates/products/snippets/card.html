@@ -6,8 +6,8 @@
   </a>
   {% endif %}
   <div class="card-body">
-    <h5 class="card-title">{{ instance.title }}</h5>
-    <p class="card-text">{{ instance.description|truncatewords:11}}</p>
+    <h5 class="card-title"><a href="{{ instance.get_absolute_url}}">{{ instance.title }}</a></h5>
+    <p class="card-text">{{ instance.description|truncatechars:50}}</p>
     <a href="{{ instance.get_absolute_url}}" class="btn btn-primary">View</a>
   </div>
 </div>
