@@ -7,6 +7,19 @@ User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 
+class CartManager(models.Manager):
+    def new(self,user=None,products=None):
+        """
+        Description:Create a new cart.\n
+        """
+        user_obj = None
+        if user is not None:
+            if user.is_authenticated():
+                user_obj = user
+        created_cart = self.model.objects.create(user=user_obj)
+        return created_cart
+
+
 
 class Cart(models.Model):
     """
@@ -17,6 +30,8 @@ class Cart(models.Model):
     total = models.DecimalField(default=0.00,max_digits=100,decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    objects = CartManager()
 
     def __str__(self):
         return str(self.id)
