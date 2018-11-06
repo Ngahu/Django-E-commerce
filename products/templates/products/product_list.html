@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-   <h1> Product list </h1>
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="container">
+<div class="row">
 
     {% for obj in object_list  %} 
-       <a href="{{ obj.get_absolute_url}}">{{ obj.title }}</a> </br>
-       DESC: {{ obj.description}} </br> 
-       <hr/>
+    <div class="col">
+        {% include 'products/snippets/card.html' with instance=obj %}
+    </div>
     {% endfor %}
+</div>
+</div>
 
-</body>
-</html>
+{% endblock content %}
+
+
+
+
+
