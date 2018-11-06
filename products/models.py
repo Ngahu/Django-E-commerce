@@ -4,7 +4,7 @@ from django.db import models
 from .utils import unique_slug_generator
 from django.db.models.signals import pre_save
 from django.core.urlresolvers import reverse
-
+from django.db.models import Q
 
 # Create your models here.
 
@@ -31,10 +31,17 @@ class ProductQuerySet(models.query.QuerySet):
     def featured(self):
         return self.filter(featured=True,active=True)
 
+    def search(self,query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query)
+        return self.filter(lookups).distinct()
+
+
+
 
 class ProductManager(models.Manager):
     def get_queryset(self):
         return ProductQuerySet(self.model,using=self._db)
+
     def all(self):
         return self.get_queryset().active()
 
@@ -43,6 +50,18 @@ class ProductManager(models.Manager):
 
     def get_by_id(self,id):
         return self.get_queryset().filter(id=id)
+
+    
+    def search(self,query):
+        """
+        Description:Perform the search by the user 
+        """
+        lookups = (Q(title__icontains=query) |
+                  Q(description__icontains=query)|
+                  Q(price__icontains=query)
+                  )
+        return self.get_queryset().active().search(query)
+
 
 
 class Product(models.Model):
