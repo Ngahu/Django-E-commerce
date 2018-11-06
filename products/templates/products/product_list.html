@@ -9,9 +9,10 @@
 <body>
    <h1> Product list </h1>
 
-    {% for obj in object_list  %}
-       TITLE: {{ obj.title }} </br>
-       DESC: {{ obj.description}}
+    {% for obj in object_list  %} 
+       <a href="{{ obj.get_absolute_url}}">{{ obj.title }}</a> </br>
+       DESC: {{ obj.description}} </br> 
+       <hr/>
     {% endfor %}
 
 </body>

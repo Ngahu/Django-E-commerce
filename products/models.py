@@ -3,6 +3,9 @@ import random
 from django.db import models
 from .utils import unique_slug_generator
 from django.db.models.signals import pre_save
+from django.core.urlresolvers import reverse
+
+
 # Create your models here.
 
 def get_filename_ext  (filepath):
@@ -59,6 +62,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    
+    def get_absolute_url(self):
+        
+        return reverse("products:product_detail", kwargs={"slug": self.slug})
         
 
 
