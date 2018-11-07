@@ -5,7 +5,7 @@
 
  <div class="container">
      <div class="row">
-         <div class="col">
+         <div class="col-12 col-md-6">
                 <h1> {{ object.title}}</h1>
                  </br>
                 {{object.description|linebreaks}} </br>
@@ -13,6 +13,15 @@
                 {% if object.image %}
                 <img src='{{object.image.url}}' alt="" class="img-fluid">
                 {% endif %}
+         </div>
+         <div class="col-12 col-md-6">
+             {{ cart }}
+             
+             {% if object in cart.products.all %}
+                 <h1>in cart</h1> <button class="btn btn-link">Remove?</button>
+             {% else %}
+             <button class="btn btn-success">Add to cart</button>
+             {% endif %}
          </div>
      </div>
  </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView,DetailView
 
+from cart.models import Cart
 
 from .models import Product
 
@@ -33,7 +34,9 @@ class ProductDetailView(DetailView):
     template_name = 'products/product_detail.html'
 
     def get_context_data(self,*args,**kwargs):
-        context = super(ProductDetailView,self).get_context_data()
+        context = super(ProductDetailView,self).get_context_data(*args,**kwargs)
+        cart_obj,new_obj = Cart.objects.new_or_get(self.request)
+        context['cart'] = cart_obj
         print (context)
         return context
 
