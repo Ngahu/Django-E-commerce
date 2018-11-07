@@ -1,0 +1,18 @@
+<form action='{% url "search:product_search"%}' class="form my-2 my-lg-0">
+    <div class='input-group'>
+      <input class="form-control" type="search" placeholder="Search" name='q' aria-label="Search" value='{{ request.GET.q}}'>
+      <span class='input-group-btn'>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </span> 
+      </div>
+
+
+      {% if object in cart.products.all %}
+                 <h1>in cart</h1> <button class="btn btn-link">Remove?</button>
+             {% else %}
+             <button class="btn btn-success">Add to cart</button>
+             {% endif %}
+
+
+             
+    </form>
