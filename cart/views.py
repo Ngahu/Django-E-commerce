@@ -31,5 +31,6 @@ def cart_update(request):
             cart_obj.products.remove(product_obj)
         else:
             cart_obj.products.add(product_obj)
+        request.session['cart_items'] = cart_obj.products.count()
     # return redirect(product_obj.get_absolute_url())
     return redirect("cart:cart_home")
