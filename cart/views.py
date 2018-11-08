@@ -8,7 +8,9 @@ from products.models import Product
 def cart_home(request):
     cart_obj,new_obj = Cart.objects.new_or_get(request)
     template_name = 'cart/cart.html'
-    context = {}
+    context = {
+        "cart":cart_obj,
+    }
     return render(request,template_name,context)
 
 
