@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'search',
     'tags',
     'cart',
-    'orders'
+    'orders',
+    'billing',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"static_cdn","media_root")
 
 
 
+#video 80  --->> 81
