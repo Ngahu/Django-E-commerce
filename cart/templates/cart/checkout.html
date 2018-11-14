@@ -4,6 +4,21 @@
 
 {% block content %}
 
+
+{% if  not billing_profile %}
+
+<div class="row text-center">
+    <div class="col-12 col-md-6">
+        <p class="lead">Login</p>
+    </div>
+    
+    <div class="col-12 col-md-6">
+        <p class="lead">Continue as Guest</p>
+    </div>
+</div>
+
+{% else %}
+
 <h1>Checkout</h1>
 
 <p>Cart Total {{ order.cart.total }}</p>
@@ -12,5 +27,7 @@
 <p>Shipping total {{order.shipping_total }}</p>
 
 <p>Order Total {{ order.total }}</p>
+
+{% endif %}
 
 {% endblock content %}
