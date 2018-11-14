@@ -5,7 +5,7 @@ from .models import Cart
 from products.models import Product
 from orders.models import Order
 from billing.models import BillingProfile
-
+from  accounts.forms import GuestForm
 
 def cart_home(request):
     cart_obj,new_obj = Cart.objects.new_or_get(request)
@@ -50,6 +50,7 @@ def checkout_home(request):
     else:
         order_obj,new_order_obj = Order.objects.get_or_create(cart=cart_obj)
     
+    guest_form = GuestForm()
     user = request.user
     billing_profile = None      
     if user.is_authenticated():
@@ -58,6 +59,7 @@ def checkout_home(request):
                                                             email=user.email
                                                             )
 
+    
     context = {
         "order":order_obj,
         "billing_profile":billing_profile
