@@ -25,8 +25,10 @@ class BillingProfile(models.Model):
 
 
 def user_created_receiver(sender,instance,created,*args,**kwargs):
-    if created and instance.email:
-        BillingProfile.objects.get_or_create(user=instance,email=instance.email)
+    # if created and instance.email:
+    #     BillingProfile.objects.get_or_create(user=instance,email=instance.email)
+    if created:
+        BillingProfile.objects.get_or_create(user=instance)
 
 
 post_save.connect(user_created_receiver,sender=User)    

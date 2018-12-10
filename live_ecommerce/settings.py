@@ -36,6 +36,9 @@ INSTALLED_APPS = [
     'billing',
 ]
 
+
+AUTH_USER_MODEL = 'accounts.User'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -47,6 +50,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'live_ecommerce.urls'
+
 
 TEMPLATES = [
     {
