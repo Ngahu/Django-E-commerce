@@ -10,3 +10,4 @@ def get_client_ip_address(request):
         ip= request.META.get("REMOTE_ADDR")
     
     return ip
+    
