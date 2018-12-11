@@ -5,7 +5,7 @@ from cart.models import Cart
 
 from .models import Product
 
-
+from analytics.mixins import ObjectViewedMixin
 
 
 
@@ -26,7 +26,7 @@ class ProductListView(ListView):
 
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(ObjectViewedMixin,DetailView):
     """
     Description:Returns details of each product in the db
     """
