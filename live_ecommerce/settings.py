@@ -138,17 +138,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"static_cdn","media_root")
 
 
 
-
-"""
-Skipped Videos
-video 80
-
-#video 80  --->> 81
-"""
-
-
-
-
-#video 83
-
-

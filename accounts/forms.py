@@ -73,3 +73,36 @@ class GuestForm(forms.Form):
     Description:Form that is going to be used to create a guest user
     """
     email = forms.EmailField()
+
+
+
+
+
+
+
+
+class UserLoginForm(forms.Form):
+    """
+    Description:A form that will be used by user's to login.\n
+    """
+    email = forms.EmailField(label='Email')
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+    def clean(self,*args,**kwargs):
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+
+        if email and password :
+            user = authenticate(email=email,password=password)
+
+            if not user:
+                raise forms.ValidationError("This user does not exist")
+
+            if not user.check_password(password):
+                raise forms.ValidationError("Incorrect passsword")
+            
+            if not user.is_active:
+                raise forms.ValidationError("This user is not longer active.")
+        
+        return super(UserLoginForm,self).clean(*args,**kwargs)
