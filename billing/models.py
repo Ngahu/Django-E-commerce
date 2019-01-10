@@ -18,7 +18,7 @@ class BillingProfile(models.Model):
 
 
     def __str__(self):
-        return self.email
+        return str(self.user)
 
 
 
