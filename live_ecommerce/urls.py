@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'',include('products.urls',namespace='products')),
     url(r'search/',include('search.urls',namespace='search')),
     url(r'cart/',include('cart.urls',namespace='cart')),
+    url(r'accounts/',include('accounts.urls',namespace='accounts')),
 ]
 
 
