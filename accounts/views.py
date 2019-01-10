@@ -34,19 +34,29 @@ class UserLoginView(View):
     
 
     def post(self,request,*args,**kwargs):
-        next = request.GET.get('next')
         form = UserLoginForm(request.POST or None)
+
+        next_ = request.GET.get('next')
+        next_post = request.POST.get('next')
+        redirect_path = next_ or next_post or None
 
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(email=email,password=password)
-            login(request,user)
-            if next:
-                return redirect(next)
+
+            if user is not None:
+                login(request,user)
+
+                if is_safe_url(redirect_path,request.get_host()):
+                    return redirect(redirect_path)
+                
+                else:
+                    return redirect("/")
             
-            return redirect("/")
-        
+            else:
+                print("error")
+
         
         context = {
             "title":"Login",
