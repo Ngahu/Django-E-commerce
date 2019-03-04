@@ -5,6 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from .signals import object_viewed_signal
 from .utils import get_client_ip_address
 from django.conf import settings
+from django.contrib.sessions.models import Session
+from django.db.models.signals import pre_save,post_save
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -57,3 +60,7 @@ def object_viewed_receiver(sender,instance,request,*args,**kwargs):
 
 
 object_viewed_signal.connect(object_viewed_receiver)
+
+
+
+
