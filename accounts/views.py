@@ -48,6 +48,11 @@ class UserLoginView(View):
 
             if user is not None:
                 login(request,user)
+                try:
+                    del request.session['guest_email_id']
+                
+                except:
+                    pass
 
                 if is_safe_url(redirect_path,request.get_host()):
                     return redirect(redirect_path)
@@ -57,6 +62,7 @@ class UserLoginView(View):
             
             else:
                 print("error")
+                return redirect("/accounts/login/")
 
         
         context = {

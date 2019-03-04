@@ -11,7 +11,7 @@ class Tag(models.Model):
     Description:
     """
     title = models.CharField(max_length=150)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True,unique=True)
     description =models.TextField(blank=True)
     active = models.BooleanField(default=True)
     products = models.ManyToManyField(Product,blank=True)
