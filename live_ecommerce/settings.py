@@ -103,6 +103,12 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+#CUSTOM
+FORCE_SESSION_TO_ONE = True #Default is false
+
+
+
 STATIC_URL = '/static/'
 
 
