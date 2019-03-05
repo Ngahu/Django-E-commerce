@@ -122,3 +122,9 @@ class GuestEmail(models.Model):
 
     def __str__(self):
         return self.email
+
+    
+    class Meta:
+        verbose_name = 'Guest User'
+        verbose_name_plural = 'Guest Users'
+        ordering = ['-timestamp']

@@ -43,6 +43,8 @@ def cart_update(request):
 
 
 def checkout_home(request):
+    '''
+    '''
     cart_obj,cart_created = Cart.objects.new_or_get(request)
     order_obj = None
     if cart_created or cart_obj.products.count() == 0:
