@@ -80,6 +80,11 @@ class UserSession(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
+    def __str__(self):
+        return self.session_key
+    
+
+
     def end_session(self):
         the_key = self.session_key
         ended = self.ended

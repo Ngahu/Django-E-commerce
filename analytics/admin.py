@@ -4,6 +4,27 @@ from django.contrib import admin
 from .models import ObjectViewed,UserSession
 
 
-admin.site.register(ObjectViewed)
-admin.site.register(UserSession)
+class ObjectViewedAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'timestamp'
+    ]
+
+
+
+admin.site.register(ObjectViewed,ObjectViewedAdmin)
+
+
+
+class UserSessionAdmin(admin.ModelAdmin):
+    list_display = [
+        'user',
+        'session_key',
+        'active',
+        'timestamp'
+    ]
+
+
+
+admin.site.register(UserSession,UserSessionAdmin)
 
