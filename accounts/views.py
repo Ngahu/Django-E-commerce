@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import GuestForm
 from django.utils.http import is_safe_url
-
+from .signals import user_logged_in
 from django.views.generic import CreateView
 from django.views import View
 
@@ -48,6 +48,11 @@ class UserLoginView(View):
 
             if user is not None:
                 login(request,user)
+                user_logged_in.send(
+                    user.__class__,
+                    instance = user,
+                    request=request
+                )
                 try:
                     del request.session['guest_email_id']
                 

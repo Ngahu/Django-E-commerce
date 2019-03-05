@@ -7,7 +7,7 @@ from .utils import get_client_ip_address
 from django.conf import settings
 from django.contrib.sessions.models import Session
 from django.db.models.signals import pre_save,post_save
-
+from accounts.signals import user_logged_in
 
 User = settings.AUTH_USER_MODEL
 
@@ -64,3 +64,36 @@ object_viewed_signal.connect(object_viewed_receiver)
 
 
 
+class UserSession(models.Model):
+    '''
+    Description:store a users session 
+    '''
+    user = models.ForeignKey(User,blank=True, null=True)
+    ip_address = models.CharField(max_length=200,blank=True, null=True)
+    session_key = models.CharField(max_length=200,blank=True, null=True)
+    active = models.BooleanField(default=True)
+    ended = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+
+
+
+
+
+
+def user_logged_in_receiver(sender,instance,request,*args,**kwargs):
+    print(instance)
+
+    user = instance
+    user_ip = get_client_ip_address(request)
+    session_key = request.session.session_key
+    UserSession.objects.create(
+        user = user,
+        ip_address=user_ip,
+        session_key = session_key,
+    )
+
+
+
+user_logged_in.connect(user_logged_in_receiver)
