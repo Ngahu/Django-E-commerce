@@ -111,6 +111,9 @@ class User(AbstractBaseUser):
 
 
 class GuestEmail(models.Model):
+    '''
+    Description:Hold the details of a guest user.\n
+    '''
     email = models.EmailField()
     active = models.BooleanField(default=True)
     timestamp = models.DateTimeField(auto_now_add=True)
