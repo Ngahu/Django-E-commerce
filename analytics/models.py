@@ -76,6 +76,23 @@ class UserSession(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
 
+    def end_session(self):
+        the_key = self.session_key
+        ended = self.ended
+        try:
+            Session.objects.get(pk=the_key).delete()
+            self.active = False
+            self.ended = True
+            self.save() 
+        
+        except:
+            print("Key not found")
+            pass
+        return self.ended
+        
+        
+
+
 
 
 
